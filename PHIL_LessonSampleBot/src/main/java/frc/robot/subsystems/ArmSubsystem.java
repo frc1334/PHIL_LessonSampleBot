@@ -35,7 +35,7 @@ public class ArmSubsystem extends Subsystem {
   // Initialize the Arm Talon with only RobotMap map values
   TalonSRX Arm = new TalonSRX(RobotMap.Arm);
 
-  @Override
+  // This void method acts as a constructor which initializes the Arm PID configurations
   public void initDefaultCommand() {
     // Default configuration for an Analog Potentiometer on the Arm TalonSRX
     Arm.configSelectedFeedbackSensor(FeedbackDevice.Analog, 0, 0);
