@@ -7,8 +7,11 @@
 
 package frc.robot.utils;
 
-/**
- * Add your docs here.
- */
 public class Constants {
+
+    public static final double kArmP = 1.9;
+    public static final double kArmI = 0.00125;
+    public static final double kArmD = 0;
+    public static final double kArmF = 0;
+
 }
