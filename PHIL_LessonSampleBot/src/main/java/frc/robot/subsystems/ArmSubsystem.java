@@ -48,4 +48,15 @@ public class ArmSubsystem extends Subsystem {
     Arm.configPeakOutputForward(1);
     Arm.configPeakOutputReverse(-1);
   }
+
+  // This void method sets the position of the Arm TalonSRX to a certain potentiometer tick position value (Note: NOT ANGLE)
+  public void setPIDPosition (double setpoint) {
+    Arm.set(ControlMode.Position, setpoint);
+  }
+
+  // This double method returns the current position of the Arm; used for shuffleboard (Note: Returns potentiometer tick value, not angle)
+  public double getArmPosition () {
+    return Arm.getSelectedSensorPosition(0);
+  }
+
 }
