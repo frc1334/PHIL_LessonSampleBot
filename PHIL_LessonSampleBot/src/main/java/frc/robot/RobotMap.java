@@ -17,6 +17,10 @@ public class RobotMap {
     public static final int Right1 = 2;
     public static final int Right2 = 3;
 
+    // Arm Talon (Used with PID + Analog Potentiometer)
     public static final int Arm = 4;
+
+    // Intake Talon
+    public static final int Intake = 5;
 
 }
