@@ -59,4 +59,13 @@ public class ArmSubsystem extends Subsystem {
     return Arm.getSelectedSensorPosition(0);
   }
 
+  // This boolean method returns to check if the PID position is within a designated tolerance level (variable stored in Constants.java)
+  public boolean inRange (double setpoint) {
+    // Check to see if the absolute value between the difference of the current Arm position and the setpoint is within the tolerance range
+    if (Math.abs(setpoint - getArmPosition()) <= Constants.kArmTolerance) {
+      return true;
+    }
+    return false;
+  }
+
 }

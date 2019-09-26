@@ -27,9 +27,9 @@ public class Robot extends TimedRobot {
   private String m_autoSelected;
   private final SendableChooser<String> m_chooser = new SendableChooser<>();
 
-  DriveSubsystem DriveSubsystem = new DriveSubsystem();
-  ArmSubsystem ArmSubsystem = new ArmSubsystem();
-  IntakeSubsystem IntakeSubsystem = new IntakeSubsystem();
+  public static DriveSubsystem DriveSubsystem = new DriveSubsystem();
+  public static ArmSubsystem ArmSubsystem = new ArmSubsystem();
+  public static IntakeSubsystem IntakeSubsystem = new IntakeSubsystem();
 
   /**
    * This function is run when the robot is first started up and should be
