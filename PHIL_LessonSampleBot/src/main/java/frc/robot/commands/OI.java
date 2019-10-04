@@ -7,7 +7,8 @@
 
 package frc.robot.commands;
 
-import frc.robot.commands.*;
+import frc.robot.commands.arm.positions.*;
+import frc.robot.commands.intake.*;
 
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.GenericHID.HIDType;
@@ -47,7 +48,9 @@ public class OI {
         OperatorRTrigger = new JoystickButton(Operator, 6);
 
         // Map them to individual actions/Commands/Command Groups
+        OperatorAButton.whenPressed(new ArmDefault());
         
+        OperatorLTrigger.whenPressed(new Intake(true));
 
     }
 
