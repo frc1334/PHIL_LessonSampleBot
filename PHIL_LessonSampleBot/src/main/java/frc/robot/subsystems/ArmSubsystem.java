@@ -5,6 +5,11 @@ PID Arm Subsystems using CTRE Talon Libraries, 2018-19 Off-season Dependencies
 This subsystem class uses the CTRE TalonSRX Library's PID control for
 positional control.
 
+PROGRAMMER LOGS: (Rico Zhu, FRC 1334, September 2019)
+
+I updated this class from the original FRC 1334 "Official" 2019DeepSpace Github
+repository by removing all redundant percentage move methods.
+
 -----------------------------------------------------------------------------*/
 
 package frc.robot.subsystems;
@@ -27,9 +32,7 @@ public class ArmSubsystem extends Subsystem {
     MEDGOAL,
     CARGO,
     INTAKE,
-    CLIMB2,
-    CLIMB3,
-    PICKUP
+    PICKUP,
   }
   
   // Initialize the Arm Talon with only RobotMap map values
