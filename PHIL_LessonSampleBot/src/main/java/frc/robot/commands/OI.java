@@ -47,11 +47,25 @@ public class OI {
         OperatorLTrigger = new JoystickButton(Operator, 5);
         OperatorRTrigger = new JoystickButton(Operator, 6);
 
-        // Map them to individual actions/Commands/Command Groups
+        // Map them to individual actions/Commands/Command Groups (Operator only)
+
+        // Operator Buttons
         OperatorAButton.whenPressed(new ArmDefault());
         
+        // Operator Triggers (Intake, Outtake - Intake Flipped)
         OperatorLTrigger.whenPressed(new Intake(true));
+        OperatorRTrigger.whenPressed(new Intake(false));
 
+    }
+
+    // This double (decimal number) method returns the difference between the left and right Driver triggers (How much to move forwards/backwards)
+    public double getDriverSpeed () {
+        return Driver.getTriggerAxis(Hand.kRight) - Driver.getTriggerAxis(Hand.kLeft);
+    }
+
+    // This double method returns the x-axis of the Driver top/turn joystick. The value returned would determine how much to turn to the left or right
+    public double getDriverTurn () {
+        return Driver.getRawAxis(0);
     }
 
 }

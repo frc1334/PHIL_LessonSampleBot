@@ -8,10 +8,13 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
+import frc.robot.commands.OI;
 import frc.robot.subsystems.*;
+import frc.robot.commands.drive.*;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -27,9 +30,13 @@ public class Robot extends TimedRobot {
   private String m_autoSelected;
   private final SendableChooser<String> m_chooser = new SendableChooser<>();
 
+  public static OI OI = new OI();
+
   public static DriveSubsystem DriveSubsystem = new DriveSubsystem();
   public static ArmSubsystem ArmSubsystem = new ArmSubsystem();
   public static IntakeSubsystem IntakeSubsystem = new IntakeSubsystem();
+
+  public static DriveCommand DriveCommand = new DriveCommand();
 
   /**
    * This function is run when the robot is first started up and should be
@@ -77,15 +84,8 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousPeriodic() {
-    switch (m_autoSelected) {
-      case kCustomAuto:
-        // Put custom auto code here
-        break;
-      case kDefaultAuto:
-      default:
-        // Put default auto code here
-        break;
-    }
+    Scheduler.getInstance().run();
+    DriveCommand.start();
   }
 
   /**
@@ -93,6 +93,12 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void teleopPeriodic() {
+
+    SmartDashboard.putNumber("Arm Angle", ArmSubsystem.getArmPosition());
+
+    Scheduler.getInstance().run();
+    DriveCommand.start();
+
   }
 
   /**
