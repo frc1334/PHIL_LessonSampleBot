@@ -30,13 +30,13 @@ public class Robot extends TimedRobot {
   private String m_autoSelected;
   private final SendableChooser<String> m_chooser = new SendableChooser<>();
 
-  public static OI OI = new OI();
-
   public static DriveSubsystem DriveSubsystem = new DriveSubsystem();
   public static ArmSubsystem ArmSubsystem = new ArmSubsystem();
   public static IntakeSubsystem IntakeSubsystem = new IntakeSubsystem();
 
-  public static DriveCommand DriveCommand = new DriveCommand();
+  public static DriveCommand DriveCommand;
+
+  public static OI OI = new OI();
 
   /**
    * This function is run when the robot is first started up and should be
@@ -44,9 +44,14 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
+
+    // Initialize a new DriveCommand
+    DriveCommand = new DriveCommand();
+
     m_chooser.setDefaultOption("Default Auto", kDefaultAuto);
     m_chooser.addOption("My Auto", kCustomAuto);
     SmartDashboard.putData("Auto choices", m_chooser);
+
   }
 
   /**
@@ -96,10 +101,10 @@ public class Robot extends TimedRobot {
 
     SmartDashboard.putNumber("Arm Angle", ArmSubsystem.getArmPosition());
 
+    Scheduler.getInstance().run();
+
     // Initialize the DriveCommand (not migrated to OI lambda. all other commands are in the desired OI-lambda format)
     DriveCommand.start();
-
-    Scheduler.getInstance().run();
 
   }
 

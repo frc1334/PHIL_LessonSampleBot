@@ -12,12 +12,12 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 import frc.robot.commands.arm.*;
 
 public class ArmCargo extends CommandGroup {
-  /**
-   * Add your docs here.
-   */
+ 
+  // This is the intermediate arm position. Could be used to get Cargo Balls from the Alliance Station
+
   public ArmCargo() {
-    // Add a new sequential command called MoveArm to the potentiometer tick position 600
-    addSequential(new MoveArm(600));
+    // Add a new sequential command called MoveArm to the potentiometer tick position 250
+    addSequential(new MoveArm(250));
   }
 
 }

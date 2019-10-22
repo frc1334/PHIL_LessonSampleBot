@@ -11,13 +11,13 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 
 import frc.robot.commands.arm.*;
 
-public class ArmDefault extends CommandGroup {
+public class OutHab extends CommandGroup {
 
-  // Default arm position. (Ground) Could be used for ground intake.
+  // This is the Hab outtake position
 
-  public ArmDefault() {
-    // Add a new sequential command called MoveArm to the potentiometer tick position 470
-    addSequential(new MoveArm(10));
+  public OutHab() {
+     // Add a new sequential command called MoveArm to the potentiometer tick position 393
+    addSequential(new MoveArm(393));
   }
 
 }

@@ -37,10 +37,10 @@ public class DriveSubsystem extends Subsystem {
 
   // Basic Tank Drive Method
   public void TankDrive(double left, double right){
-    Left1.set(ControlMode.PercentOutput, left * 0.8);
+    Left1.set(ControlMode.PercentOutput, -left * 0.8);
     Left2.set(ControlMode.PercentOutput, -left * 0.8);
-    Right1.set(ControlMode.PercentOutput, -right * 0.8);
-    Right2.set(ControlMode.PercentOutput, right * 0.8);
+    Right1.set(ControlMode.PercentOutput, right * 0.8);
+    Right2.set(ControlMode.PercentOutput, -right * 0.8);
   }
 
   // Basic Arcade Drive Method
