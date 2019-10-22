@@ -51,6 +51,7 @@ public class OI {
 
         // Operator Buttons
         OperatorAButton.whenPressed(new ArmDefault());
+        OperatorBButton.whenPressed(new ArmCargo());
         
         // Operator Triggers (Intake, Outtake - Intake Flipped)
         OperatorLTrigger.whenPressed(new Intake(true));

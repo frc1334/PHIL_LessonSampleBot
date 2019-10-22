@@ -96,8 +96,10 @@ public class Robot extends TimedRobot {
 
     SmartDashboard.putNumber("Arm Angle", ArmSubsystem.getArmPosition());
 
-    Scheduler.getInstance().run();
+    // Initialize the DriveCommand (not migrated to OI lambda. all other commands are in the desired OI-lambda format)
     DriveCommand.start();
+
+    Scheduler.getInstance().run();
 
   }
 
