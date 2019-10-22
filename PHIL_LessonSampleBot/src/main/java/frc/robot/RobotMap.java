@@ -23,4 +23,7 @@ public class RobotMap {
     // Intake Talon
     public static final int Intake = 4;
 
+    // Pneumatics
+    public static final int Compressor = 0;
+
 }

@@ -7,18 +7,29 @@
 
 package frc.robot.subsystems;
 
-import edu.wpi.first.wpilibj.command.Subsystem;
+import frc.robot.RobotMap;
 
-/**
- * Add your docs here.
- */
+import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.Compressor;
+
 public class PneumaticSubsystem extends Subsystem {
-  // Put methods for controlling this subsystem
-  // here. Call these from Commands.
+  
+  // Instantiate a new Compressor with the mapping for the PCM (Pneumatics Control Module) port
+  public Compressor Compressor = new Compressor(RobotMap.Compressor);
 
   public void initDefaultCommand() {
-    // Set the default command for a subsystem here.
-    // setDefaultCommand(new MySpecialCommand());
+    // Start the Compressor
+    Compressor.setClosedLoopControl(true);
+  }
+
+  // This void method (no returns) turns the Compressor on
+  public void startCompressor () {
+    Compressor.setClosedLoopControl(true);
+  }
+
+  // This void method turns the Compressor off
+  public void stopCompressor () {
+    Compressor.setClosedLoopControl(false);
   }
   
 }
