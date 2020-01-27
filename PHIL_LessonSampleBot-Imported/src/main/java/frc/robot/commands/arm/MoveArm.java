@@ -5,58 +5,48 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands.drive;
+package frc.robot.commands.arm;
 
 import edu.wpi.first.wpilibj.command.Command;
 
 import frc.robot.Robot;
-import frc.robot.OI;
 
-public class DriveCommand extends Command {
+public class MoveArm extends Command {
 
-  boolean hatch;
-  int period;
+  double setpoint;
 
-  public DriveCommand() {
-    requires(Robot.DriveSubsystem);
-    requires(Robot.PneumaticSubsystem);
-    requires(Robot.HatchSubsystem);
+  // Default constructor,checks for dependencies (Robot's static ArmSubsystem) and update instance variables
+  public MoveArm(double setpoint) {
+    requires(Robot.ArmSubsystem);
+    this.setpoint = setpoint;
   }
 
   // Called just before this Command runs the first time
-  @Override
   protected void initialize() {
-    hatch = false;
-    period = 0;
   }
 
   // Called repeatedly when this Command is scheduled to run
-  @Override
   protected void execute() {
-      // Drive based on the response of the Driver's speed and turn
-      Robot.DriveSubsystem.ArcadeDrive(Robot.OI.getDriverSpeed(), Robot.OI.getDriverTurn());
-      if (Robot.OI.getHatchSol() && period >= 10) {
-          hatch = !hatch;
-          period = 0;
-          Robot.HatchSubsystem.toggleSol(hatch);
-      }
-      period++;
+    // Set the PID position of the Robot's ArmSubsystem to the setpoint
+    Robot.ArmSubsystem.setPIDPosition(setpoint);
   }
 
   // Make this return true when this Command no longer needs to run execute()
-  @Override
   protected boolean isFinished() {
+    // Checks to see if the Robot's Arm is within the tolerated range, if so, end the command call
+    if (Robot.ArmSubsystem.inRange(setpoint)) {
+      return true;
+    }
     return false;
   }
 
   // Called once after isFinished returns true
-  @Override
   protected void end() {
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
-  @Override
   protected void interrupted() {
   }
+
 }

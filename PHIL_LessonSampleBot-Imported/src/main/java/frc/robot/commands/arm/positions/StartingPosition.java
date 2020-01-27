@@ -9,15 +9,13 @@ package frc.robot.commands.arm.positions;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
-import frc.robot.commands.arm.*;
+import frc.robot.commands.arm.MoveArm;
 
-public class ArmCargo extends CommandGroup {
- 
-  // This is the intermediate arm position. Could be used to get Cargo Balls from the Alliance Station
-
-  public ArmCargo() {
-    // Add a new sequential command called MoveArm to the potentiometer tick position 250
-    addSequential(new MoveArm(200));
+public class StartingPosition extends CommandGroup {
+  /**
+   * Add your docs here.
+   */
+  public StartingPosition() {
+    addSequential(new MoveArm(440));
   }
-
 }

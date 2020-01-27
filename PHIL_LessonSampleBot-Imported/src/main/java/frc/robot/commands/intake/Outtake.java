@@ -5,47 +5,42 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands.drive;
+package frc.robot.commands.intake;
 
 import edu.wpi.first.wpilibj.command.Command;
 
 import frc.robot.Robot;
-import frc.robot.OI;
 
-public class DriveCommand extends Command {
+public class Outtake extends Command {
 
-  boolean hatch;
   int period;
 
-  public DriveCommand() {
-    requires(Robot.DriveSubsystem);
-    requires(Robot.PneumaticSubsystem);
-    requires(Robot.HatchSubsystem);
+  public Outtake () {
+    requires(Robot.IntakeSubsystem);
+    period = 0;
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    hatch = false;
-    period = 0;
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-      // Drive based on the response of the Driver's speed and turn
-      Robot.DriveSubsystem.ArcadeDrive(Robot.OI.getDriverSpeed(), Robot.OI.getDriverTurn());
-      if (Robot.OI.getHatchSol() && period >= 10) {
-          hatch = !hatch;
-          period = 0;
-          Robot.HatchSubsystem.toggleSol(hatch);
-      }
-      period++;
+    Robot.IntakeSubsystem.intake(true, false);
+    period++;
+    System.out.println(period);
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
+    if (period >= 75) {
+      Robot.IntakeSubsystem.intake(false, false);
+      period = 0;
+      return true;
+    }
     return false;
   }
 
